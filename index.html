@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Rock Paper Scissors Part 1</title>
+</head>
+<body>
+
+<!-- This is where the code will go that we created. -->
+<div id="game">
+	<h1>The Psychic Game</h1>
+</div>
+
+<script type="text/javascript">
+
+// Sets the computer choices
+var computerChoices = Math.random()*20+1;
+
+// Declares the tallies to 0
+var wins = 0;
+var losses = 0;
+var guessesleft = 0;
+var yourguessessofar = 9;
+
+// When the user presses the key it records the keypress and then sets it to userguess
+document.onkeyup = function(event) {
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+	// This sets the computer guess equal to the random.
+	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+	// Making sure the user chooses r, p, or s
+
+		// It tests to determine if the computer or the user won the round and then increments
+		if ((userGuess == computerGuess) {
+			wins++;
+		}else if ((userGuess != computerGuess {
+			losses++; && guessesleft--;
+
+		// Taking the tallies and displaying them in HTML
+		var html = "<p>Guess what letter I'm thinking of</p>" +
+		"<p>Wins: " +
+		wins +
+		"</p>" +
+		"<p>Losses: " +
+		losses +
+		"</p>" +
+		"<p>Guesses Left: " +
+		guessesleft +
+		"</p>";
+		"<p>Your Guesses so Far: " +
+		yourguessessofar +
+		"</p>";
+
+		// Placing the html into the game ID
+		document.querySelector('#game').innerHTML = html;
+		// or alternatively
+		// document.getElementById('game').innerHTML = html;
+
+	}
+}
+
+</script>
+</body>
+</html>
