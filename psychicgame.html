@@ -1,0 +1,107 @@
+<html>
+<head>
+	<title>Rock Paper Scissors Part 1</title>
+
+	 <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- This is where the code will go that we created. -->
+<div id="game">
+	<h1>The Psychic Game</h1>
+</div>
+
+<p>Guess what letter I'm thinking of</p>
+		<span>Wins: </span>
+		<span id="wins">0</span>
+            <br /><br />
+
+            <span>Losses:</span>
+		<span id="losses">0</span>
+            <br /><br />
+
+            <span>Guesses Left:</span>
+		<span id="guesses">9</span>
+            <br /><br />
+
+            <span>Your Guesses so Far: </span>
+		<span id="userInput">0</span>
+            <br /><br />
+
+
+<script type="text/javascript">
+
+   var wins = 0;
+   var losses = 0;
+   var guessesLeft = 9;
+   var letterGuesses = [];
+   var computerChoices;
+
+ 	function startGame() {
+        letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]; 
+
+        computerChoices = letters[Math.floor(Math.random()*letters.length)]; 
+        console.log(computerChoices);             
+    };
+
+    	document.onkeyup = function() { 
+            guessesLeft--; 
+
+        var userGuess = String.fromCharCode(event.keyCode).toLowerCase(); 
+
+        letterGuesses.push(userGuess); 
+        document.getElementById('guesses').innerHTML = guessesLeft; // update html for guesses made and number of guesses
+        document.getElementById('userInput').innerHTML = letterGuesses; // update html for guesses made and 
+
+
+if(guessesLeft>0){
+                        // check for a match
+                    if (userGuess === computerChoices){
+                        wins++  // if matching, update win count and html 
+                        alert("You win!");
+                        document.getElementById('wins').innerHTML = wins;
+                        document.getElementById('guesses').innerHTML = 9; // update guesses left
+                        letterGuesses = [];
+                        document.getElementById('userInput').innerHTML = letterGuesses; // update html for guesses made and number of guesses
+                        startGame();
+                    }
+                }
+
+		if ((userGuess == computerChoices) {
+			wins++;
+		}else if ((userGuess != computerChoices {
+			losses++; && guessesleft--;
+
+		if(guessesLeft>0){
+                    if (userGuess === computerChoices){
+                        wins++
+                        alert("You win!");
+                        document.getElementById('wins').innerHTML = wins;
+                        document.getElementById('guesses').innerHTML = 9; 
+                        letterGuesses = [];
+                        document.getElementById('userInput').innerHTML = letterGuesses; 
+                        startGame();
+                    }
+                
+        };// End onKeyUp
+}
+
+
+if (guessesLeft === 0){ // if there are no guesses left
+                    alert("Game Over!");
+                    losses++ // update loss count and html
+                    document.getElementById('losses').innerHTML = losses;
+                    document.getElementById('guesses').innerHTML = 9; // update user guess
+                    letterGuesses = [];
+                    document.getElementById('userInput').innerHTML = letterGuesses; // update html for guesses made and number of guesses
+                    guessesLeft = 9;
+                    document.getElementById('guesses').innerHTML = guessesLeft; // update html for guesses made and number of guesses
+                    startGame(); // reset the game
+                    }
+        };// End onKeyUp
+</script>
+</body>
+</html>
