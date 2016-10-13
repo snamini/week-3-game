@@ -1,65 +1,63 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Rock Paper Scissors Part 1</title>
-
-	 <!-- Latest compiled and minified CSS -->
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <!-- Bootstrap CDN Start -->        
+        <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!--     End Bootstrap CDN-->
+    <style type="text/css">
+        body {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
 
-<!-- This is where the code will go that we created. -->
-<div id="game">
-	<h1>The Psychic Game</h1>
-</div>
-
-<p>Guess what letter I'm thinking of</p>
-		<span>Wins: </span>
-		<span id="wins">0</span>
+        <h1>The Psychic Game</h1>
+  
+                <h2>Guess what letter I'm thinking of</h2>
+                <span>Wins:</span>
+                <span id="wins">0</span>
             <br /><br />
-
-            <span>Losses:</span>
-		<span id="losses">0</span>
+                <span>Losses:</span>
+                <span id="losses">0</span>
             <br /><br />
-
-            <span>Guesses Left:</span>
-		<span id="guesses">9</span>
+               <span>Guesses Left: </span>
+               <span id="guesses">9</span>
             <br /><br />
-
-            <span>Your Guesses so Far: </span>
-		<span id="userInput">0</span>
-            <br /><br />
-
-
+               <span>Your Guesses: </span>
+               <span id="userInput"></span>
+        </div><!-- End ID Game -->
+    </div><!-- End Class Row -->
+</div> <!-- End Class Container  -->
 <script type="text/javascript">
+    var computerSelection;
+    var guessesLeft = 9;
+    var losses = 0;
+    var letterGuesses = [];
+    var wins = 0;
 
-   var wins = 0;
-   var losses = 0;
-   var guessesLeft = 9;
-   var letterGuesses = [];
-   var computerChoices;
 
- 	function startGame() {
-        letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]; 
-
-        computerChoices = letters[Math.floor(Math.random()*letters.length)]; 
-        console.log(computerChoices);             
+    function startGame() {
+        letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]; // Ze List of le letters
+        // do whatever you are doing to select a random word or letter
+        computerSelection = letters[Math.floor(Math.random()*letters.length)]; // Computer selects a letter
+        console.log(computerSelection);             
     };
-
-    	document.onkeyup = function() { 
-            guessesLeft--; 
-
-        var userGuess = String.fromCharCode(event.keyCode).toLowerCase(); 
-
-        letterGuesses.push(userGuess); 
-        document.getElementById('guesses').innerHTML = guessesLeft; // update html for guesses made and number of guesses
-        document.getElementById('userInput').innerHTML = letterGuesses; // update html for guesses made and 
-
-
-if(guessesLeft>0){
+        document.onkeyup = function() { // On user input of keyUp
+            guessesLeft--; // reduce the number of guesses left by one
+            var userGuess = String.fromCharCode(event.keyCode).toLowerCase(); // get the user input as a lower case letter
+            letterGuesses.push(userGuess); // add the guess to the an array of guessed letters
+            document.getElementById('guesses').innerHTML = guessesLeft; // update html for guesses made and number of guesses
+            document.getElementById('userInput').innerHTML = letterGuesses; // update html for guesses made and number of guesses
+                // if there are still guesses left:
+                if(guessesLeft>0){
                         // check for a match
-                    if (userGuess === computerChoices){
+                    if (userGuess === computerSelection){
                         wins++  // if matching, update win count and html 
                         alert("You win!");
                         document.getElementById('wins').innerHTML = wins;
@@ -69,28 +67,7 @@ if(guessesLeft>0){
                         startGame();
                     }
                 }
-
-		if ((userGuess == computerChoices) {
-			wins++;
-		}else if ((userGuess != computerChoices {
-			losses++; && guessesleft--;
-
-		if(guessesLeft>0){
-                    if (userGuess === computerChoices){
-                        wins++
-                        alert("You win!");
-                        document.getElementById('wins').innerHTML = wins;
-                        document.getElementById('guesses').innerHTML = 9; 
-                        letterGuesses = [];
-                        document.getElementById('userInput').innerHTML = letterGuesses; 
-                        startGame();
-                    }
-                
-        };// End onKeyUp
-}
-
-
-if (guessesLeft === 0){ // if there are no guesses left
+                    if (guessesLeft === 0){ // if there are no guesses left
                     alert("Game Over!");
                     losses++ // update loss count and html
                     document.getElementById('losses').innerHTML = losses;
@@ -102,6 +79,8 @@ if (guessesLeft === 0){ // if there are no guesses left
                     startGame(); // reset the game
                     }
         };// End onKeyUp
+// start game
+startGame();
 </script>
 </body>
 </html>
